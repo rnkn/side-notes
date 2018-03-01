@@ -35,9 +35,15 @@
 
 (defcustom notes-file
   "notes.txt"
-  "Name of the notes file to find."
+  "Name of the notes file to find.
+
+This is always relative to `default-directory'. The idea is that
+your project has its own directory and notes file, but if you
+would like to use a file-specific notes file, specify a string
+with `add-file-local-variable'."
   :type 'string
   :group 'notes)
+(make-variable-buffer-local 'notes-file)
 
 (defcustom notes-select-window
   t
