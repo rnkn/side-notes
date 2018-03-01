@@ -25,7 +25,7 @@
 ;;; Code:
 
 (defgroup notes ()
-  "Minor mode for displaying a notes file."
+  "Display a notes file."
   :group 'convenience)
 
 (defcustom notes-hook
