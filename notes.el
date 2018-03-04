@@ -52,10 +52,9 @@ with `add-file-local-variable'."
   :group 'notes)
 
 (defcustom notes-display-alist
-  '((inhibit-same-window . t)
-    (side . right)
+  '((side . right)
     (window-width . 35)
-    (slot . 1))
+    (slot . -1))
   "Alist used to display notes buffer.
 
 See `display-buffer-in-side-window' for example options."
@@ -72,16 +71,20 @@ If prefixed with ARG, create the `notes-file' if it does not exist."
   (interactive)
   (if notes-buffer-identify
       (bury-buffer)
-    (let ((buf (find-file-noselect (expand-file-name notes-file default-directory))))
-      (display-buffer-in-side-window buf notes-display-alist)
-      (with-current-buffer buf
-        (setq notes-buffer-identify t)
-        (run-hooks 'notes-hook))
-      (if notes-select-window
-          (select-window (get-buffer-window buf (selected-frame))))
-      (message "Showing `%s'; %s to hide" buf
-               (key-description (where-is-internal this-command
-                                                   overriding-local-map t))))))
+    (let ((display-buffer-mark-dedicated t)
+          (buf (find-file-noselect
+                (expand-file-name notes-file default-directory))))
+      (if (get-buffer-window buf (selected-frame))
+          (delete-windows-on buf (selected-frame))
+        (display-buffer-in-side-window buf notes-display-alist)
+        (with-current-buffer buf
+          (setq notes-buffer-identify t)
+          (run-hooks 'notes-hook))
+        (if notes-select-window
+            (select-window (get-buffer-window buf (selected-frame))))
+        (message "Showing `%s'; %s to hide" buf
+                 (key-description (where-is-internal this-command
+                                                     overriding-local-map t)))))))
 
 (define-key global-map (kbd "M-s n") #'notes-show-or-hide)
 
