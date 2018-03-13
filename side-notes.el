@@ -75,6 +75,11 @@ See `display-buffer-in-side-window' for example options."
   :type 'alist
   :group 'side-notes)
 
+(defface side-notes
+  '((t nil))
+  "Default face for notes buffer."
+  :group 'side-notes)
+
 (defvar-local side-notes-buffer-identify
   nil
   "Buffer local variable to identify a notes buffer.")
@@ -93,6 +98,7 @@ If prefixed with ARG, create the `side-notes-file' if it does not exist."
         (display-buffer-in-side-window buffer side-notes-display-alist)
         (with-current-buffer buffer
           (setq side-notes-buffer-identify t)
+          (face-remap-add-relative 'default 'side-notes)
           (run-hooks 'side-notes-hook))
         (if side-notes-select-window
             (select-window (get-buffer-window buffer (selected-frame))))
