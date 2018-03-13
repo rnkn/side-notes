@@ -63,7 +63,7 @@ with `add-file-local-variable'."
   t
   "If non-nil, switch to notes window upon displaying it."
   :type 'boolean
-  :group 'notes)
+  :group 'side-notes)
 
 (defcustom side-notes-display-alist
   '((side . right)
@@ -73,7 +73,7 @@ with `add-file-local-variable'."
 
 See `display-buffer-in-side-window' for example options."
   :type 'alist
-  :group 'notes)
+  :group 'side-notes)
 
 (defvar-local side-notes-buffer-identify
   nil
