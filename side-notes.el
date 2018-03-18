@@ -84,9 +84,8 @@ See `display-buffer-in-side-window' for example options."
   nil
   "Buffer local variable to identify a notes buffer.")
 
-(defun side-notes-toggle-notes (&optional arg)
-  "Pop up a window containing notes of current directory.
-If prefixed with ARG, create the `side-notes-file' if it does not exist."
+(defun side-notes-toggle-notes ()
+  "Pop up a window containing notes of current directory."
   (interactive)
   (if side-notes-buffer-identify
       (quit-window)
