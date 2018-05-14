@@ -4,6 +4,9 @@
 
 ;; Author: Paul W. Rankin <hello@paulwrankin.com>
 ;; Keywords: convenience
+;; Version: 0.1.0
+;; Package-Requires: ((emacs "24.5"))
+;; URL: https://github.com/rnkn/side-notes
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -33,7 +36,7 @@
 
 ;; Add the following to you init file:
 
-;;     (define-key (current-global-map) (kbd "M-s n") #'side-notes-toggle-notes)
+;; (define-key (current-global-map) (kbd "M-s n") #'side-notes-toggle-notes)
 
 ;;; Code:
 
