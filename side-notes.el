@@ -4,7 +4,7 @@
 
 ;; Author: Paul W. Rankin <hello@paulwrankin.com>
 ;; Keywords: convenience
-;; Version: 0.1.0
+;; Version: 0.1.1
 ;; Package-Requires: ((emacs "24.5"))
 ;; URL: https://github.com/rnkn/side-notes
 
@@ -59,6 +59,7 @@ your project has its own directory and notes file, but if you
 would like to use a file-specific notes file, specify a string
 with `add-file-local-variable'."
   :type 'string
+  :safe 'stringp
   :group 'side-notes)
 (make-variable-buffer-local 'side-notes-file)
 
@@ -66,6 +67,7 @@ with `add-file-local-variable'."
   t
   "If non-nil, switch to notes window upon displaying it."
   :type 'boolean
+  :safe 'booleanp
   :group 'side-notes)
 
 (defcustom side-notes-display-alist
