@@ -36,7 +36,7 @@
 ;; Installation
 ;; ------------
 
-;; Add the following to you init file:
+;; Add something like the following to your init file:
 
 ;; (define-key (current-global-map) (kbd "M-s n") #'side-notes-toggle-notes)
 
