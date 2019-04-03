@@ -4,7 +4,7 @@
 
 ;; Author: Paul W. Rankin <hello@paulwrankin.com>
 ;; Keywords: convenience
-;; Version: 0.1.1
+;; Version: 0.2.0
 ;; Package-Requires: ((emacs "24.5"))
 ;; URL: https://github.com/rnkn/side-notes
 
@@ -28,8 +28,10 @@
 
 ;; Quickly display your quick side notes in quick side window.
 
-;; Side notes live in a file in the current directory defined by custom option
-;; `side-notes-file', which defaults to "notes.txt".
+;; Side notes live in a file defined by custom option `side-notes-file',
+;; which defaults to `notes.txt'. This file can be placed anywhere in the
+;; current directory heirarchy (i.e. `default-directory' of any parent
+;; directory).
 
 ;; Installation
 ;; ------------
@@ -89,14 +91,23 @@ See `display-buffer-in-side-window' for example options."
   nil
   "Buffer local variable to identify a notes buffer.")
 
+(defun side-notes-locate-notes ()
+  "Look up directory hierachy for file `side-notes-file'.
+
+Return nil if no notes file found."
+  (expand-file-name
+   side-notes-file (locate-dominating-file default-directory side-notes-file)))
+
 (defun side-notes-toggle-notes ()
-  "Pop up a window containing notes of current directory."
+  "Pop up a side window containing the notes file.
+
+See `side-notes-display-alist' for options concerning displaying
+the notes buffer."
   (interactive)
   (if side-notes-buffer-identify
       (quit-window)
     (let ((display-buffer-mark-dedicated t)
-          (buffer (find-file-noselect
-                   (expand-file-name side-notes-file default-directory))))
+          (buffer (find-file-noselect (side-notes-locate-notes))))
       (if (get-buffer-window buffer (selected-frame))
           (delete-windows-on buffer (selected-frame))
         (display-buffer-in-side-window buffer side-notes-display-alist)

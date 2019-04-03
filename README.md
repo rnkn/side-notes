@@ -3,8 +3,10 @@ Side Notes
 
 Quickly display your quick side notes in quick side window.
 
-Side notes live in a file in the current directory defined by custom option
-`side-notes-file`, which defaults to `notes.txt`.
+Side notes live in a file defined by custom option `side-notes-file`,
+which defaults to `notes.txt`. This file can be placed anywhere in the
+current directory heirarchy (i.e. `default-directory` of any parent
+directory).
 
 Installation
 ------------
