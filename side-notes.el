@@ -40,6 +40,11 @@
 
 ;; (define-key (current-global-map) (kbd "M-s n") #'side-notes-toggle-notes)
 
+;; Report Issues
+;; -------------
+
+;; Send an email to <~pwr/elisp@todo.sr.ht>.
+
 ;;; Code:
 
 (defgroup side-notes ()
