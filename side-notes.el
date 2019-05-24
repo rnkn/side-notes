@@ -1,6 +1,6 @@
 ;;; side-notes.el --- Easy access to a directory notes file  -*- lexical-binding: t; -*-
 
-;; Copyright (c) 2018 Paul W. Rankin
+;; Copyright (c) 2019 Paul W. Rankin
 
 ;; Author: Paul W. Rankin <hello@paulwrankin.com>
 ;; Keywords: convenience
