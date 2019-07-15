@@ -12,8 +12,3 @@ Add something like the following to your init file:
 
     (define-key (current-global-map) (kbd "M-s n")
       #'side-notes-toggle-notes)
-
-## Report Bugs ##
-
-Send an email to <~pwr/elisp@todo.sr.ht>.
-
