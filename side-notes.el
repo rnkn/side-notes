@@ -100,6 +100,7 @@ Return nil if no notes file found."
   (expand-file-name
    side-notes-file (locate-dominating-file default-directory side-notes-file)))
 
+;;;###autoload
 (defun side-notes-toggle-notes ()
   "Pop up a side window containing the notes file.
 
