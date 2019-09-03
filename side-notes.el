@@ -8,18 +8,20 @@
 ;; Package-Requires: ((emacs "24.5"))
 ;; URL: https://github.com/rnkn/side-notes
 
+;; This file is not part of GNU Emacs.
+
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
-;; the Free Software Foundation, either version 3 of the License, or
-;; (at your option) any later version.
+;; the Free Software Foundation, either version 3 of the License, or (at
+;; your option) any later version.
 
-;; This program is distributed in the hope that it will be useful,
-;; but WITHOUT ANY WARRANTY; without even the implied warranty of
-;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-;; GNU General Public License for more details.
+;; This program is distributed in the hope that it will be useful, but
+;; WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+;; General Public License for more details.
 
 ;; You should have received a copy of the GNU General Public License
-;; along with this program.  If not, see <https://www.gnu.org/licenses/>.
+;; along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 ;;; Commentary:
 
@@ -27,16 +29,17 @@
 
 ;; Quickly display your quick side notes in quick side window.
 
-;; Side notes live in a file in the current directory or any parent directory
-;; thereof. The filename to look for is defined by custom option
+;; Side notes live in a file in the current directory or any parent
+;; directory thereof. The filename to look for is defined by custom option
 ;; side-notes-file, which defaults to "notes.txt".
+
+;; For more info, see (info "(elisp) Side Windows")
 
 ;; ## Installation ##
 
 ;; Add something like the following to your init file:
 
-;;     (define-key (current-global-map) (kbd "M-s n")
-;;       #'side-notes-toggle-notes)
+;; (define-key (current-global-map) (kbd "M-s n") #'side-notes-toggle-notes)
 
 
 ;;; Code:
