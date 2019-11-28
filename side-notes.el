@@ -4,7 +4,7 @@
 
 ;; Author: Paul W. Rankin <hello@paulwrankin.com>
 ;; Keywords: convenience
-;; Version: 0.2.1
+;; Version: 0.3.0
 ;; Package-Requires: ((emacs "24.5"))
 ;; URL: https://github.com/rnkn/side-notes
 
@@ -56,7 +56,7 @@
 
 (defcustom side-notes-file
   "notes.txt"
-  "Name of the notes file to find.
+  "Name of the notes file.
 
 This file lives in the current directory or any parent directory
 thereof, which allows you to keep a notes file in the top level
@@ -70,6 +70,22 @@ directory-specific notes file with `add-dir-local-variable'."
   :group 'side-notes)
 (make-variable-buffer-local 'side-notes-file)
 
+(defcustom side-notes-secondary-file
+  nil
+  "Name of an optional secondary notes file.
+
+Like `side-notes-file' but displayed when `side-notes-toggle-notes'
+is prefixed with \\[universal-argument].
+
+If you would like to use a file-specific notes file, specify a
+string with `add-file-local-variable'. Likewise you can specify a
+directory-specific notes file with `add-dir-local-variable'."
+  :type '(choice (const nil)
+                 (string "notes-2.txt"))
+  :safe 'stringp
+  :group 'side-notes)
+(make-variable-buffer-local 'side-notes-secondary-file)
+
 (defcustom side-notes-select-window
   t
   "If non-nil, switch to notes window upon displaying it."
@@ -79,11 +95,13 @@ directory-specific notes file with `add-dir-local-variable'."
 
 (defcustom side-notes-display-alist
   '((side . right)
-    (window-width . 35)
-    (slot . 0))
+    (window-width . 35))
   "Alist used to display notes buffer.
 
-See `display-buffer-in-side-window' for example options."
+See `display-buffer-in-side-window' for example options.
+
+n.b. the special symbol `slot' added automatically to ensure that
+`side-notes-file' is displayed above `side-notes-secondary-file'."
   :type 'alist
   :group 'side-notes)
 
@@ -96,27 +114,33 @@ See `display-buffer-in-side-window' for example options."
   nil
   "Buffer local variable to identify a notes buffer.")
 
-(defun side-notes-locate-notes ()
+(defun side-notes-locate-notes (&optional arg)
   "Look up directory hierachy for file `side-notes-file'.
 
 Return nil if no notes file found."
-  (expand-file-name
-   side-notes-file (locate-dominating-file default-directory side-notes-file)))
+  (let ((file (if (and arg side-notes-secondary-file)
+                  side-notes-secondary-file
+                side-notes-file)))
+    (expand-file-name file (locate-dominating-file default-directory file))))
 
 ;;;###autoload
-(defun side-notes-toggle-notes ()
-  "Pop up a side window containing the notes file.
+(defun side-notes-toggle-notes (arg)
+  "Pop up a side window containing `side-notes-file'.
+
+When ARG is non-nil (if prefixed with \\[universal-argument]), locate
+`side-notes-secondary-file' instead.
 
 See `side-notes-display-alist' for options concerning displaying
 the notes buffer."
-  (interactive)
+  (interactive "P")
   (if side-notes-buffer-identify
       (quit-window)
     (let ((display-buffer-mark-dedicated t)
-          (buffer (find-file-noselect (side-notes-locate-notes))))
+          (buffer (find-file-noselect (side-notes-locate-notes arg))))
       (if (get-buffer-window buffer (selected-frame))
           (delete-windows-on buffer (selected-frame))
-        (display-buffer-in-side-window buffer side-notes-display-alist)
+        (display-buffer-in-side-window
+         buffer (cons (cons 'slot (if arg 1 -1)) side-notes-display-alist))
         (with-current-buffer buffer
           (setq side-notes-buffer-identify t)
           (face-remap-add-relative 'default 'side-notes)
