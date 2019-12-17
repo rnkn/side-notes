@@ -2,7 +2,7 @@
 
 ;; Copyright (c) 2019 Paul W. Rankin
 
-;; Author: Paul W. Rankin <hello@paulwrankin.com>
+;; Author: Paul W. Rankin <code@paulwrankin.com>
 ;; Keywords: convenience
 ;; Version: 0.3.0
 ;; Package-Requires: ((emacs "24.5"))
