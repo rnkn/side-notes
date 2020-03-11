@@ -1,10 +1,10 @@
 ;;; side-notes.el --- Easy access to a directory notes file  -*- lexical-binding: t; -*-
 
-;; Copyright (c) 2019 Paul W. Rankin
+;; Copyright (c) 2019-2020  Paul William Rankin
 
-;; Author: Paul W. Rankin <code@paulwrankin.com>
+;; Author: William Rankin <code@william.bydasein.com>
 ;; Keywords: convenience
-;; Version: 0.3.0
+;; Version: 0.3.1
 ;; Package-Requires: ((emacs "24.5"))
 ;; URL: https://github.com/rnkn/side-notes
 
@@ -153,3 +153,10 @@ the notes buffer."
 
 (provide 'side-notes)
 ;;; side-notes.el ends here
+
+;; Local Variables:
+;; coding: utf-8-unix
+;; fill-column: 80
+;; require-final-newline: t
+;; sentence-end-double-space: nil
+;; End:
