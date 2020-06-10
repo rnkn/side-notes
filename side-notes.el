@@ -29,17 +29,38 @@
 
 ;; Quickly display your quick side notes in quick side window.
 
-;; Side notes live in a file in the current directory or any parent
-;; directory thereof and is displayed in a side window with
-;; side-notes-toggle-notes. The filename to look for is defined by user
-;; option side-notes-file, which defaults to "notes.txt".
+;; Side notes live in a plain text file, called notes.txt by default,
+;; in the current directory or any higher directory in the current
+;; hierarchy. i.e. When locating notes, we first look for a notes.txt
+;; file in the current directory, then one directory up, then two
+;; directories up, and so forth.
 
-;; To really mix things up, there's the optional
-;; side-notes-secondary-file, which, when non-nil, will display a
-;; separate notes file in a lower side window when the command
+;; Side notes are displayed in a side window with the command
+;; side-notes-toggle-notes.
+
+;; The filename is defined by user option side-notes-file.
+
+;; To really mix things up, there's the user option
+;; side-notes-secondary-file, which defaults to notes-2.txt, and will
+;; display a separate notes file in a lower side window when the command
 ;; side-notes-toggle-notes is prefixed with an argument (C-u).
 
-;; For more info, see (info "(elisp) Side Windows")
+;; By default, having a notes file in any parent directory will locate
+;; that file rather than visit a non-existing file in the current
+;; directory, but you can override this by prefixing
+;; side-notes-toggle-notes with...
+
+;; - C-u C-u to force visiting side-notes-file within the current
+;;   directory.
+;; - C-u C-u C-u to forceforce visiting side-notes-secondary-file
+;;   within the current directory.
+
+;; Of course, you can use Markdown or Org Mode formatting by changing the
+;; file extensions of side-notes-file and/or
+;; side-notes-secondary-file.
+
+;; For more information on how to change the way the side window is
+;; displayed, see (info "(elisp) Side Windows")
 
 ;; ## Installation ##
 
@@ -49,6 +70,7 @@
 ;;     (define-key (current-global-map) (kbd "M-s n") #'side-notes-toggle-notes)
 
 ;; [melpa stable]: https://stable.melpa.org/#/side-notes
+
 
 ;;; Code:
 
