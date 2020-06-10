@@ -79,7 +79,7 @@ directory-specific notes file with `add-dir-local-variable'."
 (make-variable-buffer-local 'side-notes-file)
 
 (defcustom side-notes-secondary-file
-  nil
+  "notes-2.txt"
   "Name of an optional secondary notes file.
 
 Like `side-notes-file' but displayed when `side-notes-toggle-notes'
@@ -88,8 +88,7 @@ is prefixed with \\[universal-argument].
 If you would like to use a file-specific notes file, specify a
 string with `add-file-local-variable'. Likewise you can specify a
 directory-specific notes file with `add-dir-local-variable'."
-  :type '(choice (const nil)
-                 (string "notes-2.txt"))
+  :type 'string
   :safe 'stringp
   :group 'side-notes)
 (make-variable-buffer-local 'side-notes-secondary-file)
@@ -126,21 +125,33 @@ n.b. the special symbol `slot' added automatically to ensure that
   "Look up directory hierachy for file `side-notes-file'.
 
 Return nil if no notes file found."
-  (let ((file (if (and arg side-notes-secondary-file)
-                  side-notes-secondary-file
-                side-notes-file)))
-    (expand-file-name file (locate-dominating-file default-directory file))))
+  (cond ((and side-notes-secondary-file (= arg 64))
+         (expand-file-name side-notes-secondary-file default-directory))
+        ((= arg 16)
+         (expand-file-name side-notes-file default-directory))
+        ((and side-notes-secondary-file (= arg 4))
+         (expand-file-name side-notes-secondary-file
+                           (locate-dominating-file default-directory
+                                                   side-notes-secondary-file)))
+        (t
+         (expand-file-name side-notes-file
+                           (locate-dominating-file default-directory
+                                                   side-notes-file)))))
 
 ;;;###autoload
 (defun side-notes-toggle-notes (arg)
   "Pop up a side window containing `side-notes-file'.
 
-When ARG is non-nil (if prefixed with \\[universal-argument]), locate
-`side-notes-secondary-file' instead.
+When prefixed with...
+
+  1. \\[universal-argument], locate `side-notes-secondary-file' instead.
+  2. \\[universal-argument] \\[universal-argument], force visiting `side-notes-file' within current directory.
+  3. \\[universal-argument] \\[universal-argument] \\[universal-argument], force visiting `side-notes-secondary-file' within
+     current directory.
 
 See `side-notes-display-alist' for options concerning displaying
 the notes buffer."
-  (interactive "P")
+  (interactive "p")
   (if side-notes-buffer-identify
       (quit-window)
     (let ((display-buffer-mark-dedicated t)
@@ -148,7 +159,8 @@ the notes buffer."
       (if (get-buffer-window buffer (selected-frame))
           (delete-windows-on buffer (selected-frame))
         (display-buffer-in-side-window
-         buffer (cons (cons 'slot (if arg 1 -1)) side-notes-display-alist))
+         buffer (cons (cons 'slot (if (or (= arg 4) (= arg 64)) 1 -1))
+                      side-notes-display-alist))
         (with-current-buffer buffer
           (setq side-notes-buffer-identify t)
           (face-remap-add-relative 'default 'side-notes)
