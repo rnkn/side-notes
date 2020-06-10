@@ -25,8 +25,8 @@ directory, but you can override this by prefixing
 
 - `C-u C-u` to force visiting `side-notes-file` within the current
   directory.
-- `C-u C-u C-u` to forceforce visiting `side-notes-secondary-file`
-  within the current directory.
+- `C-u C-u C-u` to force visiting `side-notes-secondary-file` within
+  the current directory.
 
 Of course, you can use Markdown or Org Mode formatting by changing the
 file extensions of `side-notes-file` and/or
