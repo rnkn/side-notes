@@ -2,7 +2,7 @@
 
 ;; Copyright (c) 2019-2020  Paul William Rankin
 
-;; Author: William Rankin <code@william.bydasein.com>
+;; Author: William Rankin <william@bydasein.com>
 ;; Keywords: convenience
 ;; Version: 0.4.0-beta
 ;; Package-Requires: ((emacs "24.5"))
