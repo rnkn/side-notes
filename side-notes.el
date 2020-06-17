@@ -4,7 +4,7 @@
 
 ;; Author: William Rankin <william@bydasein.com>
 ;; Keywords: convenience
-;; Version: 0.4.0-beta
+;; Version: 0.4.0
 ;; Package-Requires: ((emacs "24.5"))
 ;; URL: https://github.com/rnkn/side-notes
 
