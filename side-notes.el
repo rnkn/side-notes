@@ -1,10 +1,10 @@
 ;;; side-notes.el --- Easy access to a directory notes file  -*- lexical-binding: t; -*-
 
-;; Copyright (c) 2019-2020  Paul William Rankin
+;; Copyright (c) 2019-2021  Paul W. Rankin
 
-;; Author: William Rankin <william@bydasein.com>
+;; Author: Paul W. Rankin <pwr@bydasein.com>
 ;; Keywords: convenience
-;; Version: 0.4.0
+;; Version: 0.4.1
 ;; Package-Requires: ((emacs "24.5"))
 ;; URL: https://github.com/rnkn/side-notes
 
