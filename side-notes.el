@@ -5,7 +5,7 @@
 ;; Author: Paul W. Rankin <pwr@bydasein.com>
 ;; Keywords: convenience
 ;; Version: 0.4.1
-;; Package-Requires: ((emacs "24.5"))
+;; Package-Requires: ((emacs "24.4"))
 ;; URL: https://github.com/rnkn/side-notes
 
 ;; This file is not part of GNU Emacs.
