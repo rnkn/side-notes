@@ -140,11 +140,10 @@ directory-specific notes file with `add-dir-local-variable'."
     (window-width . 35))
   "Alist used to display notes buffer.
 
-See `display-buffer-in-side-window' for example options.
-
 n.b. the special symbol `slot' added automatically to ensure that
 `side-notes-file' is displayed above `side-notes-secondary-file'."
   :type 'alist
+  :link '(info-link "(elisp) Buffer Display Action Alists")
   :group 'side-notes)
 
 (defface side-notes
