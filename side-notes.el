@@ -1,8 +1,8 @@
 ;;; side-notes.el --- Easy access to a directory notes file  -*- lexical-binding: t; -*-
 
-;; Copyright (c) 2019-2021  Paul W. Rankin
+;; Copyright (c) 2019-2023  Paul W. Rankin
 
-;; Author: Paul W. Rankin <pwr@bydasein.com>
+;; Author: Paul W. Rankin <hello@paulwrankin.com>
 ;; Keywords: convenience
 ;; Version: 0.4.1
 ;; Package-Requires: ((emacs "24.4"))
